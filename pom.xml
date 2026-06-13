@@ -10,14 +10,19 @@
     <version>2.0</version>
 
     <modules>
-        <module>equipment</module>
-        <module>maintenancePlan</module>
-        <module>assignment</module>
-        <module>workorder</module>
-        <module>execution</module>
-        <module>notification</module>
-        <module>equipment-api</module>
-        <module>maintenancePlan-api</module>
+        <module>cmms-application</module>
+        <module>ir.dadeandish/equipment</module>
+        <module>ir.dadeandish/maintenancePlan</module>
+        <module>ir.dadeandish/assignment</module>
+        <module>ir.dadeandish/workorder</module>
+        <module>ir.dadeandish/notification</module>
+        <module>ir.dadeandish/equipment-api</module>
+        <module>ir.dadeandish/maintenancePlan-api</module>
+        <module>ir.dadeandish/workorder-api</module>
+        <module>ir.dadeandish/assignment-api</module>
+        <module>ir.dadeandish/employee</module>
+        <module>ir.dadeandish/employee-api</module>
+        <module>ir.dadeandish/notification-api</module>
     </modules>
 
     <properties>
@@ -40,10 +45,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter</artifactId>-->
 <!--        </dependency>-->
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.5.6</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
