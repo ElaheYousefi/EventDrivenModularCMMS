@@ -9,6 +9,7 @@ import ir.dadeandish.domain.EquipModel;
 import ir.dadeandish.domain.EquipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +60,7 @@ public class EquipService implements EquipmentAPI {
 
     @EventListener
     @Transactional
+    @Async
     public void handle(WorkOrderCompletedEvent workOrderCompletedEvent){
         EquipModel equipModel= equipRepository.findById(workOrderCompletedEvent.getEquipmentId())
                         .orElseThrow(() -> new RuntimeException("there is no equipment with this id"));

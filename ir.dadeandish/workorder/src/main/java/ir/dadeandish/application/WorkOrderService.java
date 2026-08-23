@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
@@ -38,6 +39,7 @@ public class WorkOrderService implements WorkorderAPI {
     }
 
     @EventListener
+    @Async
     public void handle(ReadyAssignTasksEvent event){
         for(AssignTaskDTO task: event.getAssignTaskDTOList()){
             WorkOrderModel workOrderModel= addWorkOrder(task.getId(), task.getEquipId(), task.getEquipName());

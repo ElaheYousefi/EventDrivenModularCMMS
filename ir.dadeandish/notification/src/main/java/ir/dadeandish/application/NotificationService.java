@@ -3,6 +3,7 @@ package ir.dadeandish.application;
 import ir.dadeandish.event.WorkOrderAssignedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
@@ -18,9 +19,8 @@ public class NotificationService {
         this.smsService= smsService;
     }
 
-
-
     @EventListener
+    @Async
     public void handle(WorkOrderAssignedEvent e){
         sendEmail(e.getId(), e.getEmail(), e.getDueDate(), e.getEmployeeName(), e.getEquipmentName(), e.getPriority());
         sendSMS(e.getId(), e.getMobile(), e.getDueDate(), e.getEmployeeName(), e.getEquipmentName(), e.getPriority());
